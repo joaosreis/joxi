@@ -13,13 +13,6 @@ if (hasNordigen) {
     warn("Ignoring Nordigen because of missing env variables")
 }
 
-const hasCoinbase = Deno.env.get("COINBASE_KEY") && Deno.env.get("COINBASE_SECRET")
-if (hasCoinbase) {
-    banks.push(await getCoinbaseInfo())
-} else {
-    warn("Ignoring Coinbase because of missing env variables")
-}
-
 const hasNotion = Deno.env.get("NOTION_TOKEN") && Deno.env.get("NOTION_DATABASE_ID")
 if (hasNotion) {
     await syncDatabases(banks)
