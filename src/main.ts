@@ -13,7 +13,7 @@ if (hasNordigen) {
     warn("Ignoring Nordigen because of missing env variables")
 }
 
-const hasNotion = Deno.env.get("NOTION_TOKEN") && Deno.env.get("NOTION_DATABASE_ID")
+const hasNotion = Deno.env.get("NOTION_TOKEN") && Deno.env.get("NOTION_MAIN_PAGE_ID")
 if (hasNotion) {
     await syncDatabases(banks)
 } else {
