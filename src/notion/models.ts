@@ -11,6 +11,10 @@ import { NotionTransaction, NotionPropertyTitle, Transaction, NotionPropertyRich
 export function txToNotion(tx: Transaction): NotionTransaction {
     const { booking_date, currency, id, creditor_account, creditor_name, debtor_name, meta, amount, value_date } = tx
 
+    if (value_date == undefined) {
+        console.log(tx)
+    }
+    
     return {
         ["ID"]: getNotionTitle(id),
         ["Booking Date"]: { type: "date", date: { start: booking_date } },
