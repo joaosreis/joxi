@@ -44,7 +44,7 @@ async function getAccount(accountId: string) {
         owner_name: accountResponse.owner_name || accountResponseDetail.account?.ownerName || "",
         transactions,
         bic: accountResponseDetail.account?.bic || "",
-        currency: accountResponseDetail.account?.currency || "",
+        currency: accountResponseDetail.account?.currency || "EUR", // defaults to EUR
         bban: accountResponseDetail.account?.bban || "",
         name: accountResponseDetail.account?.name || "",
         balanceAmount: parseFloat(balanceAmount.amount),
