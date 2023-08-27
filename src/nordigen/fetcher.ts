@@ -41,7 +41,7 @@ async function getAccount(accountId: string) {
         last_accessed: accountResponse.last_accessed,
         iban: accountResponse.iban,
         status: accountResponse.status,
-        owner_name: accountResponse.owner_name || accountResponseDetail.account.ownerName || "",
+        owner_name: accountResponse.owner_name || accountResponseDetail.account?.ownerName || "",
         transactions,
         bic: accountResponseDetail.account.bic,
         currency: accountResponseDetail.account.currency,
