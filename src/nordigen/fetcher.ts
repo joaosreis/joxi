@@ -43,10 +43,10 @@ async function getAccount(accountId: string) {
         status: accountResponse.status,
         owner_name: accountResponse.owner_name || accountResponseDetail.account?.ownerName || "",
         transactions,
-        bic: accountResponseDetail.account.bic,
-        currency: accountResponseDetail.account.currency,
-        bban: accountResponseDetail.account.bban,
-        name: accountResponseDetail.account.name,
+        bic: accountResponseDetail.account?.bic || "",
+        currency: accountResponseDetail.account?.currency || "",
+        bban: accountResponseDetail.account?.bban || "",
+        name: accountResponseDetail.account?.name || "",
         balanceAmount: parseFloat(balanceAmount.amount),
     } as Account
     return account
