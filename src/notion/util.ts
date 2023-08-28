@@ -1,4 +1,14 @@
 import { Account, Transaction } from "../types/custom.d.ts";
+import { getDatabaseEntries, getDatabaseId } from "./databases.ts";
+import { DatabaseType, notionToAccount } from "./models.ts";
+import { NotionAccount, Account as Acc } from "../types/index.d.ts";
+
+export async function getAccount(account: Acc) {
+    const databaseId = await getDatabaseId(DatabaseType.Accounts)
+    const rawStoredItems = await getDatabaseEntries(databaseId)
+    const storedItems = Object.values(rawStoredItems).map(a => notionToAccount(a as unknown as NotionAccount))
+    return storedItems.find(notionItem => notionItem.id === account.id)
+}
 
 /**
  * Determines which items already exist in the Notion database.
