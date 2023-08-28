@@ -6,8 +6,8 @@ import { Account as Acc, NotionAccount } from "../types/index.d.ts";
 export async function getAccount(account: Acc) {
   const databaseId = await getDatabaseId(DatabaseType.Accounts);
   const rawStoredItems = await getDatabaseEntries(databaseId);
-  const storedItems = Object.values(rawStoredItems).map((a) =>
-    notionToAccount(a as unknown as NotionAccount)
+  const storedItems = Object.entries(rawStoredItems).map(([id, a]) =>
+    notionToAccount(id, a as unknown as NotionAccount)
   );
   return storedItems.find((notionItem) => notionItem.id === account.id);
 }

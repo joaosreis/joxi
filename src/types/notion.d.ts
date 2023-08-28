@@ -160,7 +160,6 @@ export interface NotionTransaction {
 }
 
 export interface NotionAccount {
-  "Page ID": string;
   "ID": NotionPropertyTitle;
   "Created": NotionPropertyDate;
   "Last Accessed": NotionPropertyDate;

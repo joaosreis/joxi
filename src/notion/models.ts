@@ -90,7 +90,6 @@ export function accountToNotion(bank: Bank, account: Account): NotionAccount {
   const { name: bankName, transaction_total_days } = bank;
 
   return {
-    "Page ID": "",
     "ID": getNotionTitle(id),
     "Created": { type: "date", date: { start: created } },
     "Last Accessed": { type: "date", date: { start: last_accessed } },
@@ -112,9 +111,9 @@ export function accountToNotion(bank: Bank, account: Account): NotionAccount {
  * @param tx
  * @returns
  */
-export function notionToAccount(tx: NotionAccount): Account {
+export function notionToAccount(id: string, tx: NotionAccount): Account {
   return {
-    page_id: tx["Page ID"],
+    page_id: id,
     id: tx["ID"].title[0].plain_text,
     created: tx["Created"].date?.start || "",
     last_accessed: tx["Last Accessed"].date?.start || "",

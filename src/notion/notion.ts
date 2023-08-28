@@ -43,8 +43,8 @@ async function syncTransactionsDatabase(account: Account) {
 async function syncAccountsDatabase(bank: Bank, newAccounts: Account[]) {
   const databaseId = await getDatabaseId(DatabaseType.Accounts);
   const rawStoredItems = await getDatabaseEntries(databaseId);
-  const storedItems = Object.values(rawStoredItems).map((a) =>
-    notionToAccount(a as unknown as NotionAccount)
+  const storedItems = Object.entries(rawStoredItems).map(([id, a]) =>
+    notionToAccount(id, a as unknown as NotionAccount)
   );
 
   const { itemsToCreate, itemsToUpdate } = getActions(storedItems, newAccounts);
