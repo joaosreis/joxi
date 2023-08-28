@@ -134,7 +134,7 @@ export interface NotionPropertyNumber {
   number: number | null;
   id: string;
 }
-export interface NotionRelation {
+export interface NotionPropertyRelation {
   type: "relation";
   relation: Array<{ id: IdRequest }>;
   id: string;
@@ -144,7 +144,7 @@ export type NotionProperty =
   | NotionPropertyTitle
   | NotionPropertySelect
   | NotionPropertyNumber
-  | NotionRelation;
+  | NotionPropertyRelation;
 
 export interface NotionTransaction {
   "ID": NotionPropertyTitle;
@@ -156,10 +156,11 @@ export interface NotionTransaction {
   "Creditor Account": NotionPropertyRichText;
   "Debtor Name": NotionPropertyRichText;
   "Meta": NotionPropertyRichText;
-  "Account": NotionRelation;
+  "Account": NotionPropertyRelation;
 }
 
 export interface NotionAccount {
+  "Page ID": string;
   "ID": NotionPropertyTitle;
   "Created": NotionPropertyDate;
   "Last Accessed": NotionPropertyDate;

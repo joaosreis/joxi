@@ -43,7 +43,7 @@ export function txToNotion(
     ["Meta"]: getNotionRichText(meta),
     ["Amount"]: { type: "number", number: amount },
     ["Value Date"]: { type: "date", date: { start: value_date2 } },
-    ["Account"]: { type: "relation", relation: [{ id: acc?.id || "" }] },
+    ["Account"]: { type: "relation", relation: [{ id: acc?.page_id || "" }] },
   } as NotionTransaction;
 }
 
@@ -90,6 +90,7 @@ export function accountToNotion(bank: Bank, account: Account): NotionAccount {
   const { name: bankName, transaction_total_days } = bank;
 
   return {
+    "Page ID": "",
     "ID": getNotionTitle(id),
     "Created": { type: "date", date: { start: created } },
     "Last Accessed": { type: "date", date: { start: last_accessed } },
@@ -113,6 +114,7 @@ export function accountToNotion(bank: Bank, account: Account): NotionAccount {
  */
 export function notionToAccount(tx: NotionAccount): Account {
   return {
+    page_id: tx["Page ID"],
     id: tx["ID"].title[0].plain_text,
     created: tx["Created"].date?.start || "",
     last_accessed: tx["Last Accessed"].date?.start || "",
